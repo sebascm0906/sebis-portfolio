@@ -85,6 +85,40 @@ nav a:hover {
   color: var(--foreground);
 }
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.85rem, 2vw, 1.5rem);
+}
+
+.language-switcher {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.62);
+}
+
+.language-switcher a {
+  display: inline-flex;
+  min-height: 32px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+  color: var(--muted);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+.language-switcher a + a {
+  border-left: 1px solid var(--line);
+}
+
+.language-switcher a[aria-current="page"] {
+  background: var(--dark);
+  color: #ffffff;
+}
+
 .section {
   width: min(1120px, calc(100% - 32px));
   margin: 0 auto;
@@ -388,6 +422,12 @@ h3 {
     max-width: 250px;
   }
 
+  .header-actions {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.75rem;
+  }
+
   .hero,
   .experience-section,
   .contact-section {
@@ -435,6 +475,11 @@ h3 {
   nav {
     gap: 0.75rem;
     font-size: 0.82rem;
+  }
+
+  .language-switcher a {
+    min-height: 30px;
+    padding: 0 8px;
   }
 
   .button {
