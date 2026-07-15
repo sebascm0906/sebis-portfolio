@@ -168,6 +168,14 @@ export function renderPortfolioPage(locale: Locale) {
           >
             GitHub
           </a>
+          <a
+            className="button secondary letterboxd-button"
+            href="https://letterboxd.com/sebasBalls/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            {content.contact.letterboxdLabel}
+          </a>
         </div>
       </section>
     </main>

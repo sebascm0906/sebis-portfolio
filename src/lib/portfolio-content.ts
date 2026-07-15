@@ -72,6 +72,7 @@ export type PortfolioContent = {
     label: string;
     heading: string;
     text: string;
+    letterboxdLabel: string;
   };
 };
 
@@ -203,6 +204,7 @@ export const portfolioContent: Record<Locale, PortfolioContent> = {
       label: "Contacto",
       heading: "¿Tienes un problema operativo, idea de producto o prototipo de AI?",
       text: "Puedo ayudar a definir, construir y desplegar la primera versión útil, y después seguirla mejorando con el equipo.",
+      letterboxdLabel: "Me encantan las pelis",
     },
   },
   en: {
@@ -315,6 +317,7 @@ export const portfolioContent: Record<Locale, PortfolioContent> = {
       label: "Contact",
       heading: "Have an operations problem, product idea, or AI prototype?",
       text: "I can help shape, build, and deploy the first useful version, then keep improving it with the team.",
+      letterboxdLabel: "I love movies",
     },
   },
   de: {
@@ -427,6 +430,7 @@ export const portfolioContent: Record<Locale, PortfolioContent> = {
       label: "Kontakt",
       heading: "Hast du ein operatives Problem, eine Produktidee oder einen KI-Prototyp?",
       text: "Ich kann helfen, die erste nützliche Version zu definieren, zu bauen und zu deployen und sie danach mit dem Team weiterzuentwickeln.",
+      letterboxdLabel: "Ich liebe Filme",
     },
   },
 };

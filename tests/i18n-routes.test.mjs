@@ -31,3 +31,14 @@ test("root route renders the Spanish view by default", async () => {
 
   assert.match(root, /renderPortfolioPage\("es"\)/);
 });
+
+test("portfolio exposes Letterboxd follow copy and profile link", async () => {
+  const content = await readFile(contentPath, "utf8");
+  const page = await readFile(new URL("../src/app/portfolio-page.tsx", import.meta.url), "utf8");
+
+  assert.match(content, /letterboxdLabel/);
+  assert.match(content, /Me encantan las pelis/);
+  assert.match(content, /I love movies/);
+  assert.match(content, /Ich liebe Filme/);
+  assert.match(page, /https:\/\/letterboxd\.com\/sebasBalls\//);
+});
