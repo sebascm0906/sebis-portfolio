@@ -1,3 +1,4 @@
+import { ProductionSystemsSection } from "@/components/production-systems-section";
 import { locales, portfolioContent, stack, type Locale } from "@/lib/portfolio-content";
 
 export function renderPortfolioPage(locale: Locale) {
@@ -12,6 +13,7 @@ export function renderPortfolioPage(locale: Locale) {
         <div className="header-actions">
           <nav aria-label="Primary navigation">
             <a href="#work">{content.nav.work}</a>
+            <a href="#systems">{content.nav.systems}</a>
             <a href="#build">{content.nav.build}</a>
             <a href="#research">{content.nav.research}</a>
             <a href="#contact">{content.nav.contact}</a>
@@ -84,6 +86,8 @@ export function renderPortfolioPage(locale: Locale) {
           ))}
         </div>
       </section>
+
+      <ProductionSystemsSection locale={locale} />
 
       <section className="section build-section" id="build">
         <div className="section-heading">
