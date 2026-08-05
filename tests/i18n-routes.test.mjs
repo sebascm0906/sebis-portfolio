@@ -76,6 +76,23 @@ test("production systems section renders metrics conditionally and avoids fake r
   assert.doesNotMatch(section, /github\.com/);
 });
 
+test("production systems section localizes accessible helper labels", async () => {
+  const content = await readFile(productionContentPath, "utf8");
+  const section = await readFile(productionSectionPath, "utf8");
+
+  assert.match(content, /signalsAriaLabel/);
+  assert.match(content, /stackAriaLabel/);
+  assert.match(content, /categoryAriaLabel/);
+  assert.match(content, /Indicadores de sistemas en producción/);
+  assert.match(content, /Produktionssystem-Signale/);
+  assert.match(section, /content\.labels\.signalsAriaLabel/);
+  assert.match(section, /labels\.stackAriaLabel/);
+  assert.match(section, /labels\.categoryAriaLabel/);
+  assert.doesNotMatch(section, /aria-label="Production systems signals"/);
+  assert.doesNotMatch(section, /"Technology stack"/);
+  assert.match(section, /\{`\$\{placeholderLabel\}: \$\{image\.placeholder\}`\}/);
+});
+
 test("portfolio page includes production systems navigation and section", async () => {
   const content = await readFile(contentPath, "utf8");
   const page = await readFile(new URL("../src/app/portfolio-page.tsx", import.meta.url), "utf8");

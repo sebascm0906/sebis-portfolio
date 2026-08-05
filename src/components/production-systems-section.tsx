@@ -21,7 +21,7 @@ export function ProductionSystemsSection({ locale }: { locale: Locale }) {
           </div>
           <p>{content.description}</p>
         </div>
-        <div className="production-systems-signals" aria-label="Production systems signals">
+        <div className="production-systems-signals" aria-label={content.labels.signalsAriaLabel}>
           {content.signals.map((signal) => (
             <span key={signal}>{signal}</span>
           ))}
@@ -59,7 +59,11 @@ function ProductionProjectCaseStudy({
         </div>
         <h3>{project.title}</h3>
         <p>{project.summary}</p>
-        <ProjectTechnologyTags items={project.categories} variant="category" />
+        <ProjectTechnologyTags
+          ariaLabel={labels.categoryAriaLabel}
+          items={project.categories}
+          variant="category"
+        />
       </div>
       <div className="production-project-system">
         <ProjectImageGallery images={project.images} placeholderLabel={labels.screenshotPlaceholder} />
@@ -90,7 +94,7 @@ function ProductionProjectCaseStudy({
         </div>
         <div>
           <h4>{labels.stack}</h4>
-          <ProjectTechnologyTags items={project.stack} />
+          <ProjectTechnologyTags ariaLabel={labels.stackAriaLabel} items={project.stack} />
           <ProjectMetrics metrics={project.metrics} />
           <h4>{labels.outcomes}</h4>
           <p>{project.outcome}</p>
@@ -101,17 +105,16 @@ function ProductionProjectCaseStudy({
 }
 
 function ProjectTechnologyTags({
+  ariaLabel,
   items,
   variant = "stack",
 }: {
+  ariaLabel: string;
   items: string[];
   variant?: "stack" | "category";
 }) {
   return (
-    <div
-      className={`production-tags ${variant}`}
-      aria-label={variant === "stack" ? "Technology stack" : "Project categories"}
-    >
+    <div className={`production-tags ${variant}`} aria-label={ariaLabel}>
       {items.map((item) => (
         <span key={item}>{item}</span>
       ))}
@@ -154,7 +157,7 @@ function ProjectImageGallery({
               width={960}
             />
           ) : (
-            <div aria-label={image.alt} role="img">
+            <div aria-label={`${placeholderLabel}: ${image.placeholder}`} role="img">
               <span>{placeholderLabel}</span>
               <strong>{image.placeholder}</strong>
             </div>

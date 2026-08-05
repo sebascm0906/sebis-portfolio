@@ -46,6 +46,9 @@ type ProductionSystemsContent = {
     architecture: string;
     outcomes: string;
     screenshotPlaceholder: string;
+    signalsAriaLabel: string;
+    stackAriaLabel: string;
+    categoryAriaLabel: string;
   };
   projects: ProductionProject[];
 };
@@ -70,6 +73,9 @@ const spanishProductionSystems: ProductionSystemsContent = {
     architecture: "Flujo de arquitectura",
     outcomes: "Resultados / alcance",
     screenshotPlaceholder: "Reemplazar con",
+    signalsAriaLabel: "Indicadores de sistemas en producción",
+    stackAriaLabel: "Stack técnico",
+    categoryAriaLabel: "Categorías del proyecto",
   },
   projects: [
     {
@@ -262,6 +268,9 @@ const englishProductionSystems: ProductionSystemsContent = {
     architecture: "Architecture flow",
     outcomes: "Outcomes / scope",
     screenshotPlaceholder: "Replace with",
+    signalsAriaLabel: "Production systems signals",
+    stackAriaLabel: "Technology stack",
+    categoryAriaLabel: "Project categories",
   },
   projects: [
     {
@@ -454,6 +463,9 @@ const germanProductionSystems: ProductionSystemsContent = {
     architecture: "Architekturfluss",
     outcomes: "Ergebnisse / Umfang",
     screenshotPlaceholder: "Ersetzen durch",
+    signalsAriaLabel: "Produktionssystem-Signale",
+    stackAriaLabel: "Technologie-Stack",
+    categoryAriaLabel: "Projektkategorien",
   },
   projects: [
     {
