@@ -22,6 +22,7 @@ export type PortfolioContent = {
   localeName: string;
   nav: {
     work: string;
+    systems: string;
     build: string;
     research: string;
     contact: string;
@@ -98,6 +99,7 @@ export const portfolioContent: Record<Locale, PortfolioContent> = {
     localeName: "Español",
     nav: {
       work: "Trabajo",
+      systems: "Sistemas",
       build: "Qué construyo",
       research: "Research",
       contact: "Contacto",
@@ -211,6 +213,7 @@ export const portfolioContent: Record<Locale, PortfolioContent> = {
     localeName: "English",
     nav: {
       work: "Work",
+      systems: "Systems",
       build: "Build",
       research: "Research",
       contact: "Contact",
@@ -324,6 +327,7 @@ export const portfolioContent: Record<Locale, PortfolioContent> = {
     localeName: "Deutsch",
     nav: {
       work: "Arbeit",
+      systems: "Systeme",
       build: "Leistungen",
       research: "Forschung",
       contact: "Kontakt",
