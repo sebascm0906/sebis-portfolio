@@ -121,7 +121,7 @@ export const portfolioContent: Record<Locale, PortfolioContent> = {
       stackText: "ERP, ingeniería de producto, automatización y flujos con AI.",
       languagesLabel: "Idiomas",
       languages: "Español, inglés, alemán",
-      languagesText: "Español nativo con inglés C1 y alemán C1.",
+      languagesText: "Español nativo con inglés B2+ y alemán B2+.",
     },
     selectedWork: {
       label: "Trabajo seleccionado",
@@ -235,7 +235,7 @@ export const portfolioContent: Record<Locale, PortfolioContent> = {
       stackText: "ERP, product engineering, automation, and AI workflows.",
       languagesLabel: "Languages",
       languages: "Spanish, English, German",
-      languagesText: "Native Spanish with C1 English and German.",
+      languagesText: "Native Spanish with B2+ English and German.",
     },
     selectedWork: {
       label: "Selected work",
@@ -349,7 +349,7 @@ export const portfolioContent: Record<Locale, PortfolioContent> = {
       stackText: "ERP, Produktentwicklung, Automatisierung und KI-Workflows.",
       languagesLabel: "Sprachen",
       languages: "Spanisch, Englisch, Deutsch",
-      languagesText: "Spanisch als Muttersprache, Englisch C1 und Deutsch C1.",
+      languagesText: "Spanisch als Muttersprache, Englisch B2+ und Deutsch B2+.",
     },
     selectedWork: {
       label: "Ausgewählte Arbeit",

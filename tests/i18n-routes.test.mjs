@@ -26,6 +26,16 @@ test("portfolio content defines Spanish, English, and German views", async () =>
   assert.match(content, /Tech Builder \+ angewandte KI-Forschung/);
 });
 
+test("portfolio language proficiency copy uses B2+ instead of uncertified C1", async () => {
+  const content = await readFile(contentPath, "utf8");
+
+  assert.match(content, /inglés B2\+ y alemán B2\+/);
+  assert.match(content, /B2\+ English and German/);
+  assert.match(content, /Englisch B2\+ und Deutsch B2\+/);
+  assert.doesNotMatch(content, /English C1|Englisch C1|inglés C1/);
+  assert.doesNotMatch(content, /German C1|Deutsch C1|alemán C1/);
+});
+
 test("locale route statically renders all supported language paths", async () => {
   const route = await readFile(localePagePath, "utf8");
 
