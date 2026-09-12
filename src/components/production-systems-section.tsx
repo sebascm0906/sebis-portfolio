@@ -51,7 +51,7 @@ function ProductionProjectCaseStudy({
   project: ProductionProject;
 }) {
   return (
-    <article className="production-project" data-layout={index % 2 === 0 ? "standard" : "reversed"}>
+    <article className="production-project" id={project.id} data-layout={!project.architecture?.nodes.length ? "gallery" : index % 2 === 0 ? "standard" : "reversed"}>
       <div className="production-project-copy">
         <div className="production-project-kicker">
           <span>{project.status}</span>
@@ -66,7 +66,6 @@ function ProductionProjectCaseStudy({
         />
       </div>
       <div className="production-project-system">
-        <ProjectImageGallery images={project.images} placeholderLabel={labels.screenshotPlaceholder} />
         <ProjectArchitectureFlow label={labels.architecture} nodes={project.architecture?.nodes ?? []} />
       </div>
       <div className="production-project-details">
@@ -83,23 +82,27 @@ function ProductionProjectCaseStudy({
           <p>{project.role}</p>
         </div>
       </div>
-      <div className="production-project-footer">
-        <div>
-          <h4>{labels.technicalHighlights}</h4>
-          <ul>
-            {project.highlights.map((highlight) => (
-              <li key={highlight}>{highlight}</li>
-            ))}
-          </ul>
+      <ProjectImageGallery images={project.images} />
+      <details className="production-project-disclosure">
+        <summary>{labels.technicalDetails}<span aria-hidden="true">+</span></summary>
+        <div className="production-project-footer">
+          <div>
+            <h4>{labels.technicalHighlights}</h4>
+            <ul>
+              {project.highlights.map((highlight) => (
+                <li key={highlight}>{highlight}</li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h4>{labels.stack}</h4>
+            <ProjectTechnologyTags ariaLabel={labels.stackAriaLabel} items={project.stack} />
+            <ProjectMetrics metrics={project.metrics} />
+            <h4>{labels.outcomes}</h4>
+            <p>{project.outcome}</p>
+          </div>
         </div>
-        <div>
-          <h4>{labels.stack}</h4>
-          <ProjectTechnologyTags ariaLabel={labels.stackAriaLabel} items={project.stack} />
-          <ProjectMetrics metrics={project.metrics} />
-          <h4>{labels.outcomes}</h4>
-          <p>{project.outcome}</p>
-        </div>
-      </div>
+      </details>
     </article>
   );
 }
@@ -139,29 +142,28 @@ function ProjectArchitectureFlow({ label, nodes }: { label: string; nodes: strin
 
 function ProjectImageGallery({
   images,
-  placeholderLabel,
 }: {
   images: ProductionProjectImage[];
-  placeholderLabel: string;
 }) {
+  const availableImages = images.filter((image) => image.src);
+  if (!availableImages.length) return null;
+  const landscape = availableImages.every((image) => (image.width ?? 960) > (image.height ?? 640));
+
   return (
-    <div className="project-image-gallery">
-      {images.map((image) => (
-        <figure className="project-image-placeholder" key={image.placeholder}>
+    <div className="project-image-gallery app-screenshot-gallery" data-format={landscape ? "landscape" : "portrait"} data-single={availableImages.length === 1}>
+      {availableImages.map((image) => (
+        <figure className="app-screenshot" key={image.src}>
           {image.src ? (
+            <a href={image.src} target="_blank" rel="noreferrer">
             <Image
               alt={image.alt}
-              height={640}
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 960px"
+              height={image.height ?? 640}
+              sizes={availableImages.length === 1 ? "(max-width: 1152px) 100vw, 1120px" : landscape ? "(max-width: 900px) 85vw, 760px" : "(max-width: 520px) 72vw, 240px"}
               src={image.src}
-              width={960}
+              width={image.width ?? 960}
             />
-          ) : (
-            <div aria-label={`${placeholderLabel}: ${image.placeholder}`} role="img">
-              <span>{placeholderLabel}</span>
-              <strong>{image.placeholder}</strong>
-            </div>
-          )}
+            </a>
+          ) : null}
           {image.caption ? <figcaption>{image.caption}</figcaption> : null}
         </figure>
       ))}

@@ -1,3 +1,4 @@
+import { colaboradoresContent } from "./colaboradores-content";
 import type { Locale } from "./portfolio-content";
 
 export type ProjectMetric = {
@@ -7,6 +8,8 @@ export type ProjectMetric = {
 
 export type ProductionProjectImage = {
   src?: string;
+  width?: number;
+  height?: number;
   alt: string;
   caption?: string;
   placeholder: string;
@@ -42,6 +45,7 @@ type ProductionSystemsContent = {
     solution: string;
     myRole: string;
     technicalHighlights: string;
+    technicalDetails: string;
     stack: string;
     architecture: string;
     outcomes: string;
@@ -54,8 +58,8 @@ type ProductionSystemsContent = {
 };
 
 const spanishProductionSystems: ProductionSystemsContent = {
-  label: "INGENIERIA REAL",
-  heading: "Selected Production Systems",
+  label: "Ingeniería en producción",
+  heading: "Sistemas que mueven operaciones.",
   description:
     "Aplicaciones empresariales, integraciones y workflows automatizados diseñados alrededor de restricciones operativas reales. Trabajo desde discovery de requerimientos, arquitectura e implementación hasta despliegue y troubleshooting en producción, incluyendo ingeniería cercana a operaciones, agentes de AI, aplicaciones móviles y desarrollo PWA.",
   signals: [
@@ -68,7 +72,8 @@ const spanishProductionSystems: ProductionSystemsContent = {
     businessProblem: "Problema de negocio",
     solution: "Solución",
     myRole: "Mi rol",
-    technicalHighlights: "Highlights técnicos",
+    technicalHighlights: "Aspectos técnicos",
+    technicalDetails: "Explorar detalles técnicos",
     stack: "Stack",
     architecture: "Flujo de arquitectura",
     outcomes: "Resultados / alcance",
@@ -80,29 +85,25 @@ const spanishProductionSystems: ProductionSystemsContent = {
   projects: [
     {
       id: "delivery-operations-platform",
-      title: "Delivery Operations Platform",
+      title: "Kold Field · Delivery Operations Platform",
       summary:
-        "Una plataforma de entregas basada en roles que conecta despacho, operaciones de almacén, conductores y registros ERP mediante interfaces web y móviles.",
+        "Aplicación de ventas y operación en campo integrada con Odoo. Permite registrar ventas sin conexión y sincronizarlas cuando vuelve la señal, con mayor control de las rutas y menores costos operativos.",
       categories: ["Production System", "PWA", "Mobile Application"],
       status: "Production System",
       repositoryLabel: "Private production repository",
       problem:
-        "La coordinación de entregas dependía de registros ERP fragmentados, comunicación manual, preparación de almacén, asignación de rutas y actualizaciones en campo. Cada rol operativo necesitaba acceso a información y acciones distintas.",
+        "Los choferes usaban Simplify y notas de papel para registrar la operación. El objetivo era controlar ventas y rutas sin pagar suscripciones adicionales; el principal reto técnico fue el funcionamiento sin conexión.",
       solution:
-        "Construí una PWA y un workflow móvil basado en roles, integrado con Odoo, para gestionar pedidos de entrega, asignaciones de conductores, estado de rutas, información de clientes, avance de fulfillment y actividad en campo.",
+        "Kold Field reúne el registro de ventas y el control de rutas con conexión a Odoo. Las ventas realizadas sin señal se guardan en una cola y se sincronizan al detectar que se recupera la conectividad.",
       role:
-        "Discovery de requerimientos, arquitectura de solución, desarrollo full-stack, integración con Odoo, diseño de workflows, despliegue y troubleshooting en producción.",
+        "Arquitectura de la aplicación, parte de los estilos, funcionalidades de impresión, conectividad con Odoo y manejo de usuarios.",
       highlights: [
-        "Interfaces basadas en roles para usuarios operativos y administrativos",
-        "Asignaciones de entrega y gestión de estados",
-        "Workflows de aceptación y rechazo para conductores",
-        "Información de clientes y ubicaciones",
-        "Integración con Odoo Sales, Inventory, Contacts y registros de entrega",
-        "Endpoints backend custom",
-        "Notificaciones operativas",
-        "Experiencias de usuario web y mobile",
-        "Soporte en producción para software, servidores, redes y dispositivos de campo",
-      ],
+        "Cola de ventas para registrar operaciones sin conexión",
+        "Sincronización con Odoo al detectar conectividad",
+        "Funciones de impresión de tickets",
+        "Gestión de usuarios y acceso a la aplicación",
+        "Registro de ventas y seguimiento de rutas"
+],
       stack: [
         "Next.js",
         "TypeScript",
@@ -115,34 +116,60 @@ const spanishProductionSystems: ProductionSystemsContent = {
       ],
       images: [
         {
-          alt: "Dashboard de gestión de entregas",
-          placeholder: "Dashboard de gestión de entregas",
+                "src": "/images/kold-field/route.png",
+                "width": 415,
+                "height": 906,
+                "alt": "Kold Field: lista de clientes planificados y avance de la ruta.",
+                "caption": "Ruta del día",
+                "placeholder": "Ruta del día"
         },
         {
-          alt: "Aplicación móvil para conductores",
-          placeholder: "Aplicación móvil para conductores",
+                "src": "/images/kold-field/map.png",
+                "width": 421,
+                "height": 912,
+                "alt": "Kold Field: mapa con paradas y acceso a la navegación hacia el cliente.",
+                "caption": "Mapa de paradas",
+                "placeholder": "Mapa de paradas"
         },
         {
-          alt: "Vista de asignación de rutas",
-          placeholder: "Vista de asignación de rutas",
+                "src": "/images/kold-field/sale.png",
+                "width": 422,
+                "height": 912,
+                "alt": "Kold Field: registro de productos, pago y fotografía de entrega.",
+                "caption": "Venta y evidencia",
+                "placeholder": "Venta y evidencia"
         },
-      ],
+        {
+                "src": "/images/kold-field/ticket.png",
+                "width": 417,
+                "height": 910,
+                "alt": "Kold Field: ticket con detalle de venta y opción para abrir el PDF.",
+                "caption": "Ticket de venta",
+                "placeholder": "Ticket de venta"
+        },
+        {
+                "src": "/images/kold-field/checkout.png",
+                "width": 418,
+                "height": 914,
+                "alt": "Kold Field: resumen de visita completada y siguiente parada.",
+                "caption": "Cierre de visita",
+                "placeholder": "Cierre de visita"
+        }
+],
       architecture: {
         nodes: [
-          "Usuarios operativos",
-          "PWA / Mobile App",
-          "Capa API custom",
-          "Odoo",
-          "Automatizaciones n8n",
-          "Notificaciones y eventos operativos",
-        ],
+          "Ventas en campo",
+          "Cola de ventas offline",
+          "Detección de conectividad",
+          "Sincronización con Odoo"
+],
       },
       outcome:
-        "Conecta roles operativos, registros ERP y workflows de campo en un solo sistema en producción sin exponer detalles de repositorios privados ni métricas fabricadas.",
+        "Reducción de costos en suscripciones y notas foliadas impresas, junto con mayor control de la operación.",
     },
     {
       id: "whatsapp-customer-automation",
-      title: "WhatsApp Customer Automation",
+      title: "Köld Bot · WhatsApp Customer Automation",
       summary:
         "Un workflow conversacional que identifica clientes por WhatsApp y conecta interacciones de mensajería con datos ERP y lógica de negocio.",
       categories: ["AI Workflow", "Conversational Agent", "Enterprise Integration"],
@@ -168,18 +195,38 @@ const spanishProductionSystems: ProductionSystemsContent = {
       stack: ["Botpress", "Python", "Odoo", "REST APIs", "Webhooks", "JavaScript", "n8n"],
       images: [
         {
-          alt: "Workflow de conversación en WhatsApp",
-          placeholder: "Workflow de conversación en WhatsApp",
+                "src": "/images/kold-bot/recommendations.jpg",
+                "width": 738,
+                "height": 1600,
+                "caption": "Recomendaciones de productos",
+                "placeholder": "Recomendaciones de productos",
+                "alt": "Köld Bot recomienda productos por WhatsApp para una reunión con amigos."
         },
         {
-          alt: "Canvas de flujo en Botpress",
-          placeholder: "Canvas de flujo en Botpress",
+                "src": "/images/kold-bot/combos.jpg",
+                "width": 738,
+                "height": 1600,
+                "caption": "Detalle de combos",
+                "placeholder": "Detalle de combos",
+                "alt": "El bot detalla el contenido y precio de los combos solicitados."
         },
         {
-          alt: "Respuesta de búsqueda de cliente en Odoo",
-          placeholder: "Respuesta de búsqueda de cliente en Odoo",
+                "src": "/images/kold-bot/customer.jpg",
+                "width": 738,
+                "height": 1600,
+                "caption": "Pedido e identificación del cliente",
+                "placeholder": "Pedido e identificación del cliente",
+                "alt": "El cliente pide productos en lenguaje natural y el bot solicita confirmar su identidad."
         },
-      ],
+        {
+                "src": "/images/kold-bot/order.jpg",
+                "width": 738,
+                "height": 1600,
+                "caption": "Resumen y confirmación del pedido",
+                "placeholder": "Resumen y confirmación del pedido",
+                "alt": "El bot presenta cantidades, precios y total del pedido para confirmación del cliente."
+        }
+],
       architecture: {
         nodes: [
           "Usuario de WhatsApp",
@@ -191,59 +238,50 @@ const spanishProductionSystems: ProductionSystemsContent = {
         ],
       },
       outcome:
-        "Conecta mensajería de clientes con identidad ERP, validación y respuestas estructuradas, manteniendo fuera del portafolio público los detalles privados de implementación.",
+        "Conecta mensajería de clientes con identidad ERP, validación y respuestas estructuradas.",
     },
     {
       id: "route-planning-fulfillment-automation",
       title: "Route Planning and Fulfillment Automation",
       summary:
-        "Un workflow operativo de ruteo que transforma registros de entrega en rutas estructuradas usando restricciones de vehículos, tiempo, ubicación y servicio.",
+        "Planeación territorial en Odoo para recuperar la atención a clientes recurrentes. En la primera semana de la nueva planeación, 56 clientes recibieron visita y 15 volvieron a comprar.",
       categories: ["Optimization", "Workflow Automation", "ERP Integration"],
       status: "Production Workflow",
       repositoryLabel: "Private production repository",
       problem:
-        "La planeación de entregas requería coordinar ubicaciones geográficas, vehículos disponibles, asignaciones de conductores, tiempos de servicio, estado de fulfillment y preparación de almacén.",
+        "La asignación por canal de venta y proximidad había dejado clientes recurrentes sin atención. El reto principal era mejorar la calidad de las zonas para cubrir a esos clientes.",
       solution:
-        "Construí workflows que extraen datos de entrega desde Odoo, preparan entradas de optimización, calculan secuencias de ruta y conectan los resultados con procesos operativos de entrega.",
+        "Reorganicé las zonas considerando posición geográfica, canal de venta, capacidad de compra y ventana horaria. Desarrollé un diseñador de polígonos integrado en Odoo y tareas programadas para predicción de compra.",
       role:
-        "Modelado de datos, desarrollo backend, arquitectura de integración, implementación de workflows de optimización, integración ERP y validación operativa.",
+        "Diseño de las zonas, desarrollo del frontend del diseñador de polígonos, integración de Leaflet en Odoo y creación de tareas programadas para predicción de compra.",
       highlights: [
-        "Trabajos de entrega generados desde registros ERP",
-        "Restricciones de vehículos y capacidad",
-        "Coordenadas geográficas",
-        "Cálculos de tiempo de servicio",
-        "Ventanas de tiempo operativo",
-        "Secuenciación de rutas",
-        "Seguimiento de distancia y tiempo de traslado",
-        "Asignaciones de conductores",
-        "Integración con lotes de entrega y estado operativo",
-      ],
-      stack: ["Python", "Odoo", "VROOM", "REST APIs", "n8n", "Mapping APIs", "PostgreSQL"],
+        "Diseño de zonas orientado a la cobertura de clientes recurrentes",
+        "Planeación por ubicación, canal, capacidad de compra y ventana horaria",
+        "Frontend del diseñador de polígonos con Leaflet integrado en Odoo",
+        "Tareas programadas para predicción de compra"
+],
+      stack: ["Odoo", "Leaflet", "Cron"],
+      metrics: [{ value: "56", label: "clientes visitados en la primera semana" }, { value: "15", label: "clientes que volvieron a comprar en la primera semana" }],
       images: [
         {
-          alt: "Mapa de optimización de rutas",
-          placeholder: "Mapa de optimización de rutas",
-        },
-        {
-          alt: "Vista de asignación de rutas",
-          placeholder: "Vista de asignación de rutas",
-        },
-        {
-          alt: "Workflow de integración con Odoo",
-          placeholder: "Workflow de integración con Odoo",
-        },
-      ],
+                "src": "/images/route-planning/polygon-designer.png",
+                "width": 2223,
+                "height": 1057,
+                "caption": "Planeación de territorios y polígonos",
+                "alt": "Diseñador de polígonos de Grupo Frio con territorios, subpolígonos, clientes geolocalizados y resumen territorial.",
+                "placeholder": "Planeación de territorios y polígonos"
+        }
+],
       architecture: {
         nodes: [
-          "Entregas de Odoo",
-          "Transformación de datos",
-          "Motor de optimización de rutas",
-          "Secuencia de ruta",
-          "Workflows de conductores y almacén",
-        ],
+          "Clientes en Odoo",
+          "Criterios de cobertura",
+          "Zonas y polígonos en Leaflet",
+          "Planeación territorial"
+],
       },
       outcome:
-        "Convierte registros ERP de entrega en workflows estructurados de planeación restringidos por vehículos, geografía, tiempo de servicio y estado operativo, sin reclamar métricas no verificadas.",
+        "En la primera semana tras reorganizar las zonas, 56 clientes recibieron visita y 15 volvieron a comprar.",
     },
   ],
 };
@@ -264,6 +302,7 @@ const englishProductionSystems: ProductionSystemsContent = {
     solution: "Solution",
     myRole: "My role",
     technicalHighlights: "Technical highlights",
+    technicalDetails: "Explore technical details",
     stack: "Stack",
     architecture: "Architecture flow",
     outcomes: "Outcomes / scope",
@@ -275,29 +314,25 @@ const englishProductionSystems: ProductionSystemsContent = {
   projects: [
     {
       id: "delivery-operations-platform",
-      title: "Delivery Operations Platform",
+      title: "Kold Field · Delivery Operations Platform",
       summary:
-        "A role-based delivery platform connecting dispatch, warehouse operations, drivers, and ERP records through web and mobile interfaces.",
+        "A field sales and operations app integrated with Odoo. Records sales offline and synchronizes them when connectivity returns, improving route control and reducing operating costs.",
       categories: ["Production System", "PWA", "Mobile Application"],
       status: "Production System",
       repositoryLabel: "Private production repository",
       problem:
-        "Delivery coordination depended on fragmented ERP records, manual communication, warehouse preparation, route assignments, and field updates. Different operational roles needed access to different information and actions.",
+        "Drivers used Simplify and paper notes to record operations. The goal was to control sales and routes without additional subscriptions; offline functionality was the main technical challenge.",
       solution:
-        "Built a role-based PWA and mobile workflow integrated with Odoo to manage delivery orders, driver assignments, route status, customer information, fulfillment progress, and field activity.",
+        "Kold Field combines sales recording and route control with Odoo connectivity. Sales recorded without a signal are queued and synchronized when connectivity is detected again.",
       role:
-        "Requirements discovery, solution architecture, full-stack development, Odoo integration, workflow design, deployment, and production troubleshooting.",
+        "Application architecture, selected styling, printing functionality, Odoo connectivity, and user management.",
       highlights: [
-        "Role-based interfaces for operational and administrative users",
-        "Delivery assignments and status management",
-        "Driver acceptance and rejection workflows",
-        "Customer and location information",
-        "Integration with Odoo Sales, Inventory, Contacts, and delivery records",
-        "Custom backend endpoints",
-        "Operational notifications",
-        "Web and mobile user experiences",
-        "Production support across software, servers, networks, and field devices",
-      ],
+        "Offline sales queue",
+        "Synchronization with Odoo when connectivity returns",
+        "Receipt printing functionality",
+        "User management and application access",
+        "Sales recording and route tracking"
+],
       stack: [
         "Next.js",
         "TypeScript",
@@ -310,34 +345,60 @@ const englishProductionSystems: ProductionSystemsContent = {
       ],
       images: [
         {
-          alt: "Delivery management dashboard",
-          placeholder: "Delivery management dashboard",
+                "src": "/images/kold-field/route.png",
+                "width": 415,
+                "height": 906,
+                "alt": "Kold Field: planned customer list and route progress.",
+                "caption": "Daily route",
+                "placeholder": "Daily route"
         },
         {
-          alt: "Driver mobile application",
-          placeholder: "Driver mobile application",
+                "src": "/images/kold-field/map.png",
+                "width": 421,
+                "height": 912,
+                "alt": "Kold Field: stop map and navigation to the customer.",
+                "caption": "Stop map",
+                "placeholder": "Stop map"
         },
         {
-          alt: "Route assignment view",
-          placeholder: "Route assignment view",
+                "src": "/images/kold-field/sale.png",
+                "width": 422,
+                "height": 912,
+                "alt": "Kold Field: products, payment, and delivery photo capture.",
+                "caption": "Sale and delivery evidence",
+                "placeholder": "Sale and delivery evidence"
         },
-      ],
+        {
+                "src": "/images/kold-field/ticket.png",
+                "width": 417,
+                "height": 910,
+                "alt": "Kold Field: itemized sales receipt with an option to open the PDF.",
+                "caption": "Sales receipt",
+                "placeholder": "Sales receipt"
+        },
+        {
+                "src": "/images/kold-field/checkout.png",
+                "width": 418,
+                "height": 914,
+                "alt": "Kold Field: completed visit summary and next stop.",
+                "caption": "Visit checkout",
+                "placeholder": "Visit checkout"
+        }
+],
       architecture: {
         nodes: [
-          "Operational Users",
-          "PWA / Mobile App",
-          "Custom API Layer",
-          "Odoo",
-          "n8n Automations",
-          "Notifications and Operational Events",
-        ],
+          "Field sales",
+          "Offline sales queue",
+          "Connectivity detection",
+          "Synchronization with Odoo"
+],
       },
       outcome:
-        "Connects operational roles, ERP records, and field workflows in one production system without exposing private repository details or fabricated metrics.",
+        "Reduced spending on subscriptions and preprinted numbered sales slips, with greater operational control.",
     },
     {
       id: "whatsapp-customer-automation",
-      title: "WhatsApp Customer Automation",
+      title: "Köld Bot · WhatsApp Customer Automation",
       summary:
         "A conversational workflow that identifies customers through WhatsApp and connects messaging interactions with ERP data and business logic.",
       categories: ["AI Workflow", "Conversational Agent", "Enterprise Integration"],
@@ -363,18 +424,38 @@ const englishProductionSystems: ProductionSystemsContent = {
       stack: ["Botpress", "Python", "Odoo", "REST APIs", "Webhooks", "JavaScript", "n8n"],
       images: [
         {
-          alt: "WhatsApp conversation workflow",
-          placeholder: "WhatsApp conversation workflow",
+                "src": "/images/kold-bot/recommendations.jpg",
+                "width": 738,
+                "height": 1600,
+                "caption": "Product recommendations",
+                "placeholder": "Product recommendations",
+                "alt": "Köld Bot recommends products on WhatsApp for a gathering with friends."
         },
         {
-          alt: "Botpress flow canvas",
-          placeholder: "Botpress flow canvas",
+                "src": "/images/kold-bot/combos.jpg",
+                "width": 738,
+                "height": 1600,
+                "caption": "Combo details",
+                "placeholder": "Combo details",
+                "alt": "The bot lists the contents and prices of the requested combos."
         },
         {
-          alt: "Odoo customer lookup response",
-          placeholder: "Odoo customer lookup response",
+                "src": "/images/kold-bot/customer.jpg",
+                "width": 738,
+                "height": 1600,
+                "caption": "Order and customer identification",
+                "placeholder": "Order and customer identification",
+                "alt": "The customer orders in natural language and the bot requests identity confirmation."
         },
-      ],
+        {
+                "src": "/images/kold-bot/order.jpg",
+                "width": 738,
+                "height": 1600,
+                "caption": "Order summary and confirmation",
+                "placeholder": "Order summary and confirmation",
+                "alt": "The bot presents quantities, prices, and the order total for customer confirmation."
+        }
+],
       architecture: {
         nodes: [
           "WhatsApp User",
@@ -386,66 +467,57 @@ const englishProductionSystems: ProductionSystemsContent = {
         ],
       },
       outcome:
-        "Connects customer messaging with ERP identity, validation, and structured responses while keeping private implementation details out of the public portfolio.",
+        "Connects customer messaging with ERP identity, validation, and structured responses.",
     },
     {
       id: "route-planning-fulfillment-automation",
       title: "Route Planning and Fulfillment Automation",
       summary:
-        "An operational routing workflow that transforms delivery records into structured routes using vehicle, time, location, and service constraints.",
+        "Territory planning in Odoo to restore coverage for recurring customers. In the first week of the new plan, 56 customers received a visit and 15 purchased again.",
       categories: ["Optimization", "Workflow Automation", "ERP Integration"],
       status: "Production Workflow",
       repositoryLabel: "Private production repository",
       problem:
-        "Delivery planning required coordinating geographic locations, available vehicles, driver assignments, service times, fulfillment status, and warehouse preparation.",
+        "Assignment by sales channel and proximity had left recurring customers unattended. The main challenge was improving zone quality to cover those customers.",
       solution:
-        "Built workflows that extract delivery data from Odoo, prepare optimization inputs, calculate route sequences, and connect the results back to operational delivery processes.",
+        "Reorganized zones using geographic location, sales channel, purchasing capacity, and time windows. Built a polygon designer integrated into Odoo and scheduled tasks for purchase prediction.",
       role:
-        "Data modeling, backend development, integration architecture, optimization workflow implementation, ERP integration, and operational validation.",
+        "Zone design, polygon designer frontend development, Leaflet integration in Odoo, and scheduled tasks for purchase prediction.",
       highlights: [
-        "Delivery jobs generated from ERP records",
-        "Vehicle and capacity constraints",
-        "Geographic coordinates",
-        "Service-time calculations",
-        "Operating time windows",
-        "Route sequencing",
-        "Distance and travel-time tracking",
-        "Driver assignments",
-        "Integration with delivery batches and operational status",
-      ],
-      stack: ["Python", "Odoo", "VROOM", "REST APIs", "n8n", "Mapping APIs", "PostgreSQL"],
+        "Zone design focused on coverage of recurring customers",
+        "Planning by location, sales channel, purchasing capacity, and time window",
+        "Polygon designer frontend with Leaflet integrated into Odoo",
+        "Scheduled tasks for purchase prediction"
+],
+      stack: ["Odoo", "Leaflet", "Cron"],
+      metrics: [{ value: "56", label: "customers visited in the first week" }, { value: "15", label: "customers who purchased again in the first week" }],
       images: [
         {
-          alt: "Route optimization map",
-          placeholder: "Route optimization map",
-        },
-        {
-          alt: "Route assignment view",
-          placeholder: "Route assignment view",
-        },
-        {
-          alt: "Odoo integration workflow",
-          placeholder: "Odoo integration workflow",
-        },
-      ],
+                "src": "/images/route-planning/polygon-designer.png",
+                "width": 2223,
+                "height": 1057,
+                "caption": "Territory and polygon planning",
+                "alt": "Grupo Frio polygon designer with territories, subpolygons, geolocated customers, and a territory summary.",
+                "placeholder": "Territory and polygon planning"
+        }
+],
       architecture: {
         nodes: [
-          "Odoo Deliveries",
-          "Data Transformation",
-          "Route Optimization Engine",
-          "Route Sequence",
-          "Driver and Warehouse Workflows",
-        ],
+          "Customers in Odoo",
+          "Coverage criteria",
+          "Zones and polygons in Leaflet",
+          "Territory planning"
+],
       },
       outcome:
-        "Turns ERP delivery records into structured planning workflows constrained by vehicles, geography, service time, and operational status, without claiming unverified metrics.",
+        "In the first week after reorganizing the zones, 56 customers received a visit and 15 purchased again.",
     },
   ],
 };
 
 const germanProductionSystems: ProductionSystemsContent = {
   label: "REAL-WORLD ENGINEERING",
-  heading: "Selected Production Systems",
+  heading: "Systeme für den operativen Alltag.",
   description:
     "Enterprise-Anwendungen, Integrationen und automatisierte Workflows, die um reale operative Einschränkungen herum entworfen wurden. Ich arbeite von Requirements Discovery, Architektur und Implementierung bis zu Deployment und Production Troubleshooting, einschließlich operativer Engineering-Arbeit, KI-Agenten, mobilen Anwendungen und PWA-Entwicklung.",
   signals: [
@@ -459,6 +531,7 @@ const germanProductionSystems: ProductionSystemsContent = {
     solution: "Lösung",
     myRole: "Meine Rolle",
     technicalHighlights: "Technische Highlights",
+    technicalDetails: "Technische Details ansehen",
     stack: "Stack",
     architecture: "Architekturfluss",
     outcomes: "Ergebnisse / Umfang",
@@ -470,29 +543,25 @@ const germanProductionSystems: ProductionSystemsContent = {
   projects: [
     {
       id: "delivery-operations-platform",
-      title: "Delivery Operations Platform",
+      title: "Kold Field · Delivery Operations Platform",
       summary:
-        "Eine rollenbasierte Lieferplattform, die Disposition, Lagerprozesse, Fahrer und ERP-Datensätze über Web- und Mobile-Interfaces verbindet.",
+        "Eine mit Odoo integrierte App für Außendienst und Verkauf. Verkäufe werden offline erfasst und bei wiederhergestellter Verbindung synchronisiert, für bessere Routenkontrolle und geringere Betriebskosten.",
       categories: ["Production System", "PWA", "Mobile Application"],
       status: "Production System",
       repositoryLabel: "Private production repository",
       problem:
-        "Die Lieferkoordination hing von fragmentierten ERP-Datensätzen, manueller Kommunikation, Lagervorbereitung, Routenzuweisungen und Updates aus dem Feld ab. Unterschiedliche operative Rollen benötigten Zugriff auf unterschiedliche Informationen und Aktionen.",
+        "Die Fahrer nutzten Simplify und Papiernotizen zur Erfassung ihrer Arbeit. Ziel war die Kontrolle von Verkäufen und Routen ohne zusätzliche Abonnements; die größte technische Herausforderung war die Offline-Funktionalität.",
       solution:
-        "Ich habe eine rollenbasierte PWA und einen mobilen Workflow mit Odoo-Integration gebaut, um Lieferaufträge, Fahrerzuweisungen, Routenstatus, Kundeninformationen, Fulfillment-Fortschritt und Feldaktivitäten zu verwalten.",
+        "Kold Field verbindet Verkaufserfassung und Routenkontrolle mit Odoo. Verkäufe ohne Netzverbindung werden in einer Warteschlange gespeichert und synchronisiert, sobald wieder eine Verbindung erkannt wird.",
       role:
-        "Requirements Discovery, Lösungsarchitektur, Full-Stack-Entwicklung, Odoo-Integration, Workflow-Design, Deployment und Production Troubleshooting.",
+        "Anwendungsarchitektur, Teile der Gestaltung, Druckfunktionen, Odoo-Anbindung und Benutzerverwaltung.",
       highlights: [
-        "Rollenbasierte Interfaces für operative und administrative Nutzer",
-        "Lieferzuweisungen und Statusmanagement",
-        "Workflows für Annahme und Ablehnung durch Fahrer",
-        "Kunden- und Standortinformationen",
-        "Integration mit Odoo Sales, Inventory, Contacts und Lieferdatensätzen",
-        "Custom Backend Endpoints",
-        "Operative Benachrichtigungen",
-        "Web- und Mobile User Experiences",
-        "Produktionssupport für Software, Server, Netzwerke und Feldgeräte",
-      ],
+        "Warteschlange für Offline-Verkäufe",
+        "Synchronisierung mit Odoo bei wiederhergestellter Verbindung",
+        "Druckfunktionen für Verkaufsbelege",
+        "Benutzerverwaltung und Anwendungszugang",
+        "Verkaufserfassung und Routenverfolgung"
+],
       stack: [
         "Next.js",
         "TypeScript",
@@ -505,34 +574,60 @@ const germanProductionSystems: ProductionSystemsContent = {
       ],
       images: [
         {
-          alt: "Dashboard für Liefermanagement",
-          placeholder: "Dashboard für Liefermanagement",
+                "src": "/images/kold-field/route.png",
+                "width": 415,
+                "height": 906,
+                "alt": "Kold Field: geplante Kundenbesuche und Routenfortschritt.",
+                "caption": "Tagesroute",
+                "placeholder": "Tagesroute"
         },
         {
-          alt: "Mobile App für Fahrer",
-          placeholder: "Mobile App für Fahrer",
+                "src": "/images/kold-field/map.png",
+                "width": 421,
+                "height": 912,
+                "alt": "Kold Field: Karte der Stopps mit Navigation zum Kunden.",
+                "caption": "Karte der Stopps",
+                "placeholder": "Karte der Stopps"
         },
         {
-          alt: "Ansicht für Routenzuweisungen",
-          placeholder: "Ansicht für Routenzuweisungen",
+                "src": "/images/kold-field/sale.png",
+                "width": 422,
+                "height": 912,
+                "alt": "Kold Field: Produkte, Zahlung und Lieferfoto erfassen.",
+                "caption": "Verkauf und Liefernachweis",
+                "placeholder": "Verkauf und Liefernachweis"
         },
-      ],
+        {
+                "src": "/images/kold-field/ticket.png",
+                "width": 417,
+                "height": 910,
+                "alt": "Kold Field: Verkaufsbeleg mit Positionen und PDF-Option.",
+                "caption": "Verkaufsbeleg",
+                "placeholder": "Verkaufsbeleg"
+        },
+        {
+                "src": "/images/kold-field/checkout.png",
+                "width": 418,
+                "height": 914,
+                "alt": "Kold Field: Zusammenfassung des abgeschlossenen Besuchs und nächster Stopp.",
+                "caption": "Besuchsabschluss",
+                "placeholder": "Besuchsabschluss"
+        }
+],
       architecture: {
         nodes: [
-          "Operative Nutzer",
-          "PWA / Mobile App",
-          "Custom API Layer",
-          "Odoo",
-          "n8n Automations",
-          "Benachrichtigungen und operative Events",
-        ],
+          "Verkäufe im Außendienst",
+          "Offline-Verkaufswarteschlange",
+          "Verbindungserkennung",
+          "Synchronisierung mit Odoo"
+],
       },
       outcome:
-        "Verbindet operative Rollen, ERP-Datensätze und Feld-Workflows in einem Produktionssystem, ohne Details privater Repositories oder erfundene Metriken offenzulegen.",
+        "Geringere Kosten für Abonnements und vorgedruckte nummerierte Verkaufsbelege sowie bessere Kontrolle der Abläufe.",
     },
     {
       id: "whatsapp-customer-automation",
-      title: "WhatsApp Customer Automation",
+      title: "Köld Bot · WhatsApp Customer Automation",
       summary:
         "Ein Conversational Workflow, der Kunden über WhatsApp identifiziert und Messaging-Interaktionen mit ERP-Daten und Geschäftslogik verbindet.",
       categories: ["AI Workflow", "Conversational Agent", "Enterprise Integration"],
@@ -558,18 +653,38 @@ const germanProductionSystems: ProductionSystemsContent = {
       stack: ["Botpress", "Python", "Odoo", "REST APIs", "Webhooks", "JavaScript", "n8n"],
       images: [
         {
-          alt: "WhatsApp-Konversationsworkflow",
-          placeholder: "WhatsApp-Konversationsworkflow",
+                "src": "/images/kold-bot/recommendations.jpg",
+                "width": 738,
+                "height": 1600,
+                "caption": "Produktempfehlungen",
+                "placeholder": "Produktempfehlungen",
+                "alt": "Köld Bot empfiehlt über WhatsApp Produkte für ein Treffen mit Freunden."
         },
         {
-          alt: "Botpress Flow Canvas",
-          placeholder: "Botpress Flow Canvas",
+                "src": "/images/kold-bot/combos.jpg",
+                "width": 738,
+                "height": 1600,
+                "caption": "Details der Produktpakete",
+                "placeholder": "Details der Produktpakete",
+                "alt": "Der Bot zeigt Inhalt und Preise der angefragten Produktpakete."
         },
         {
-          alt: "Odoo-Antwort zur Kundensuche",
-          placeholder: "Odoo-Antwort zur Kundensuche",
+                "src": "/images/kold-bot/customer.jpg",
+                "width": 738,
+                "height": 1600,
+                "caption": "Bestellung und Kundenidentifikation",
+                "placeholder": "Bestellung und Kundenidentifikation",
+                "alt": "Der Kunde bestellt in natürlicher Sprache und der Bot fragt nach der Bestätigung seiner Identität."
         },
-      ],
+        {
+                "src": "/images/kold-bot/order.jpg",
+                "width": 738,
+                "height": 1600,
+                "caption": "Bestellübersicht und Bestätigung",
+                "placeholder": "Bestellübersicht und Bestätigung",
+                "alt": "Der Bot zeigt Mengen, Preise und Gesamtbetrag zur Bestätigung durch den Kunden."
+        }
+],
       architecture: {
         nodes: [
           "WhatsApp User",
@@ -581,65 +696,56 @@ const germanProductionSystems: ProductionSystemsContent = {
         ],
       },
       outcome:
-        "Verbindet Kunden-Messaging mit ERP-Identität, Validierung und strukturierten Antworten, während private Implementierungsdetails aus dem öffentlichen Portfolio herausgehalten werden.",
+        "Verbindet Kunden-Messaging mit ERP-Identität, Validierung und strukturierten Antworten.",
     },
     {
       id: "route-planning-fulfillment-automation",
       title: "Route Planning and Fulfillment Automation",
       summary:
-        "Ein operativer Routing-Workflow, der Lieferdatensätze unter Berücksichtigung von Fahrzeug-, Zeit-, Standort- und Service-Einschränkungen in strukturierte Routen transformiert.",
+        "Gebietsplanung in Odoo, um die Betreuung wiederkehrender Kunden wiederherzustellen. In der ersten Woche der neuen Planung wurden 56 Kunden besucht und 15 kauften wieder.",
       categories: ["Optimization", "Workflow Automation", "ERP Integration"],
       status: "Production Workflow",
       repositoryLabel: "Private production repository",
       problem:
-        "Die Lieferplanung erforderte die Koordination geografischer Standorte, verfügbarer Fahrzeuge, Fahrerzuweisungen, Servicezeiten, Fulfillment-Status und Lagervorbereitung.",
+        "Die Zuordnung nach Vertriebskanal und Nähe hatte dazu geführt, dass wiederkehrende Kunden nicht mehr betreut wurden. Die größte Herausforderung war die Qualität der Gebiete und ihre Kundenabdeckung.",
       solution:
-        "Ich habe Workflows gebaut, die Lieferdaten aus Odoo extrahieren, Optimierungseingaben vorbereiten, Routensequenzen berechnen und die Ergebnisse wieder mit operativen Lieferprozessen verbinden.",
+        "Neuordnung der Gebiete nach geografischer Lage, Vertriebskanal, Kaufkapazität und Zeitfenster. Entwicklung eines in Odoo integrierten Polygon-Editors und geplanter Aufgaben zur Kaufprognose.",
       role:
-        "Datenmodellierung, Backend-Entwicklung, Integrationsarchitektur, Implementierung von Optimierungsworkflows, ERP-Integration und operative Validierung.",
+        "Gestaltung der Gebiete, Frontend-Entwicklung des Polygon-Editors, Leaflet-Integration in Odoo und geplante Aufgaben zur Kaufprognose.",
       highlights: [
-        "Lieferjobs aus ERP-Datensätzen",
-        "Fahrzeug- und Kapazitätsbeschränkungen",
-        "Geografische Koordinaten",
-        "Berechnungen von Servicezeiten",
-        "Operative Zeitfenster",
-        "Routensequenzierung",
-        "Tracking von Distanz und Reisezeit",
-        "Fahrerzuweisungen",
-        "Integration mit Lieferbatches und operativem Status",
-      ],
-      stack: ["Python", "Odoo", "VROOM", "REST APIs", "n8n", "Mapping APIs", "PostgreSQL"],
+        "Gebietsgestaltung mit Fokus auf wiederkehrende Kunden",
+        "Planung nach Lage, Vertriebskanal, Kaufkapazität und Zeitfenster",
+        "Polygon-Editor mit in Odoo integriertem Leaflet",
+        "Geplante Aufgaben zur Kaufprognose"
+],
+      stack: ["Odoo", "Leaflet", "Cron"],
+      metrics: [{ value: "56", label: "besuchte Kunden in der ersten Woche" }, { value: "15", label: "Kunden mit erneutem Kauf in der ersten Woche" }],
       images: [
         {
-          alt: "Karte zur Routenoptimierung",
-          placeholder: "Karte zur Routenoptimierung",
-        },
-        {
-          alt: "Ansicht für Routenzuweisungen",
-          placeholder: "Ansicht für Routenzuweisungen",
-        },
-        {
-          alt: "Odoo-Integrationsworkflow",
-          placeholder: "Odoo-Integrationsworkflow",
-        },
-      ],
+                "src": "/images/route-planning/polygon-designer.png",
+                "width": 2223,
+                "height": 1057,
+                "caption": "Gebiets- und Polygonplanung",
+                "alt": "Polygon-Editor von Grupo Frio mit Gebieten, Teilpolygonen, geolokalisierten Kunden und Gebietsübersicht.",
+                "placeholder": "Gebiets- und Polygonplanung"
+        }
+],
       architecture: {
         nodes: [
-          "Odoo Deliveries",
-          "Datentransformation",
-          "Route Optimization Engine",
-          "Routensequenz",
-          "Fahrer- und Lager-Workflows",
-        ],
+          "Kunden in Odoo",
+          "Kriterien zur Kundenabdeckung",
+          "Gebiete und Polygone in Leaflet",
+          "Gebietsplanung"
+],
       },
       outcome:
-        "Verwandelt ERP-Lieferdatensätze in strukturierte Planungsworkflows mit Einschränkungen durch Fahrzeuge, Geografie, Servicezeit und operativen Status, ohne ungeprüfte Metriken zu behaupten.",
+        "In der ersten Woche nach der Neuordnung der Gebiete wurden 56 Kunden besucht und 15 kauften wieder.",
     },
   ],
 };
 
 export const productionSystemsContent: Record<Locale, ProductionSystemsContent> = {
-  es: spanishProductionSystems,
-  en: englishProductionSystems,
-  de: germanProductionSystems,
+  es: { ...spanishProductionSystems, projects: [spanishProductionSystems.projects[0], colaboradoresContent.es, ...spanishProductionSystems.projects.slice(1)] },
+  en: { ...englishProductionSystems, projects: [englishProductionSystems.projects[0], colaboradoresContent.en, ...englishProductionSystems.projects.slice(1)] },
+  de: { ...germanProductionSystems, projects: [germanProductionSystems.projects[0], colaboradoresContent.de, ...germanProductionSystems.projects.slice(1)] },
 };

@@ -1,14 +1,17 @@
+import Image from "next/image";
 import { ProductionSystemsSection } from "@/components/production-systems-section";
+import { CampConnectProject } from "@/components/camp-connect-project";
 import { locales, portfolioContent, stack, type Locale } from "@/lib/portfolio-content";
 
 export function renderPortfolioPage(locale: Locale) {
   const content = portfolioContent[locale];
 
   return (
-    <main>
+    <main lang={locale}>
       <header className="site-header">
-        <a className="brand" href="#top" aria-label="Sebastian Cervera Maltos">
-          SCM
+        <a className="brand" href="#top" aria-label="sebis · Sebastian Cervera Maltos">
+          <Image src="/brand/sebis-symbol.png" width={36} height={36} alt="" />
+          <span>sebis</span>
         </a>
         <div className="header-actions">
           <nav aria-label="Primary navigation">
@@ -51,6 +54,16 @@ export function renderPortfolioPage(locale: Locale) {
         </div>
 
         <aside className="hero-panel" aria-label={content.focus.ariaLabel}>
+          <figure className="profile-photo">
+            <Image
+              src="/images/profile/sebastian.png"
+              alt="Sebastian Cervera Maltos"
+              width={1280}
+              height={960}
+              sizes="(max-width: 820px) 100vw, 440px"
+              preload
+            />
+          </figure>
           <div>
             <span>{content.focus.currentRoleLabel}</span>
             <strong>{content.focus.currentRole}</strong>
@@ -74,6 +87,7 @@ export function renderPortfolioPage(locale: Locale) {
           <p className="section-label">{content.selectedWork.label}</p>
           <h2>{content.selectedWork.heading}</h2>
         </div>
+        <CampConnectProject locale={locale} />
         <div className="project-list">
           {content.selectedWork.projects.map((project) => (
             <article className="project-row" key={project.title}>
@@ -95,9 +109,9 @@ export function renderPortfolioPage(locale: Locale) {
           <h2>{content.build.heading}</h2>
         </div>
         <div className="build-grid">
-          {content.build.areas.map((area) => (
+          {content.build.areas.map((area, index) => (
             <div className="build-card" key={area}>
-              <span />
+              <span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
               <p>{area}</p>
             </div>
           ))}

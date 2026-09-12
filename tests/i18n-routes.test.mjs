@@ -100,7 +100,6 @@ test("production systems section localizes accessible helper labels", async () =
   assert.match(section, /labels\.categoryAriaLabel/);
   assert.doesNotMatch(section, /aria-label="Production systems signals"/);
   assert.doesNotMatch(section, /"Technology stack"/);
-  assert.match(section, /\{`\$\{placeholderLabel\}: \$\{image\.placeholder\}`\}/);
 });
 
 test("portfolio page includes production systems navigation and section", async () => {
