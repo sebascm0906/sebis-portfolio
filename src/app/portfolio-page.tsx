@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { NavigationShell } from "@/components/navigation-shell";
 import { ProductionSystemsSection } from "@/components/production-systems-section";
 import { CampConnectProject } from "@/components/camp-connect-project";
 import { locales, portfolioContent, stack, type Locale } from "@/lib/portfolio-content";
@@ -8,18 +9,19 @@ export function renderPortfolioPage(locale: Locale) {
 
   return (
     <main lang={locale}>
-      <header className="site-header">
-        <a className="brand" href="#top" aria-label="sebis · Sebastian Cervera Maltos">
+      <NavigationShell locale={locale} brand={
+          <a className="brand" href="#top" aria-label="sebis · Sebastian Cervera Maltos">
           <Image src="/brand/sebis-symbol.png" width={36} height={36} alt="" />
           <span>sebis</span>
         </a>
-        <div className="header-actions">
-          <nav aria-label="Primary navigation">
+        }>
+        <div className="header-actions" id="portfolio-navigation">
+          <nav aria-label={locale === "es" ? "Navegación principal" : locale === "de" ? "Hauptnavigation" : "Primary navigation"}>
             <a href="#work">{content.nav.work}</a>
             <a href="#systems">{content.nav.systems}</a>
             <a href="#build">{content.nav.build}</a>
             <a href="#research">{content.nav.research}</a>
-            <a href="#contact">{content.nav.contact}</a>
+            <a className="nav-contact" href="#contact">{content.nav.contact}<span aria-hidden="true">↗</span></a>
           </nav>
           <div className="language-switcher" aria-label="Language selector">
             {locales.map((option) => (
@@ -33,7 +35,7 @@ export function renderPortfolioPage(locale: Locale) {
             ))}
           </div>
         </div>
-      </header>
+      </NavigationShell>
 
       <section className="hero section" id="top">
         <div className="hero-copy">
